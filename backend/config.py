@@ -4,7 +4,7 @@ from flask_cors import CORS #Cross origin requests
 
 app = Flask(__name__)
 
-CORS(app) #It's okay for the backend to talk to the frontend (since they are different servers)
+CORS(app) #It's okay for the backend to talk to the frontend (since they are different servers), normally throws an error
 
 #config allows us to enable/disable certain settings such as debug mode and CORS
 #SQLAlchemy is used to make it easier to interact with the database
