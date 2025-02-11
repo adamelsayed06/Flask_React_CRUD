@@ -65,7 +65,19 @@ def update_contact(user_id): #notice parameter is the same as path variable
     
     return jsonify({"message": "Contact updated successfully"}) #can add 200, but thats default
 
-
+@app.route("/delete_contact/<int:user_id>", methods=[DELETE])
+def delete_contact(user_id):
+    contact = Contact.query.get(user_id) # get the user we want to delete
+    
+    if not contact:
+        return jsonify({"message": "Invalid ID"}), 404
+    
+    db.session.delete(contact) #built in method to delete contact
+    db.session.commit()
+    
+    return jsonify({
+        "message": "Contact successfully deleted"
+    })
         
 if __name__ == '__main__':#if we run this filen not import, we want to run the app
     with app.app_context():
