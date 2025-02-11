@@ -30,8 +30,7 @@ def create_contact():
             {
                 "error": "Wrong Info"
             }
-        ), 400 #400 is a bad request
-        
+        ), 400 #400 is a bad request  
         
     new_contact = Contact(first_name = first_name, last_name = last_name, email = email)
     try:
@@ -47,8 +46,26 @@ def create_contact():
     return jsonify(
         {"Message": "Contact created successfully"}
         ), 201 #201 is created
+    
+    #Test API using tools like postman
+    
+@app.route("/update_contact/<int:user_id", methods="PATCH") #using id b/c its primary to identify user we want to update
+def update_contact(user_id): #notice parameter is the same as path variable
+    contact = Contact.query.get(user_id) #get contact by ID, similar to getter function in Java
         
-        
+    if not contact:
+        return jsonify({"message": "Invalid ID"}), 404 #404 is not found
+    
+    data = request.json #get the data from the request, which is the new info (first name, last name email etc)
+    contact.first_name = data.get("firstName", contact.first_name) #if we don't get a new first name, keep the old one
+    contact.last_name = data.get("lastName", contact.last_name)
+    contact.email = data.get("email", contact.email)
+    
+    db.session.commit() #The contact object is already in the database, so we don't need to add it again, so commiting is enough
+    
+    return jsonify({"message": "Contact updated successfully"}) #can add 200, but thats default
+
+
         
 if __name__ == '__main__':#if we run this filen not import, we want to run the app
     with app.app_context():
