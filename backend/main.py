@@ -49,7 +49,7 @@ def create_contact():
     
     #Test API using tools like postman
     
-@app.route("/update_contact/<int:user_id>", methods="PATCH") #using id b/c its primary to identify user we want to update
+@app.route("/update_contact/<int:user_id>", methods=["PATCH"]) #using id b/c its primary to identify user we want to update
 def update_contact(user_id): #notice parameter is the same as path variable
     contact = Contact.query.get(user_id) #get contact by ID, similar to getter function in Java
         
