@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import ContactList from './ContactList'
+import ContactForm from './ContactForm'
 import './App.css'
 
 function App() {
-  const [contacts, setContacts] = useState([{"firstName": "John", "lastName": "Doe", "email": "johndoe@gmail.com", id: 1}]);
+  const [contacts, setContacts] = useState([]);
     //{} because its a JSON object
   useEffect(() => {
-    //fetchContacts();
+    fetchContacts();
   }, []); //empty array means it only runs once
 
   const fetchContacts = async () =>{ //async b/c needs to wait to grab info from backend
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <ContactList contacts = {contacts}/>
+      <ContactForm />
     </>
   )
 }
