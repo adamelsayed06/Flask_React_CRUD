@@ -18,3 +18,5 @@ class Contact(db.Model):
             "lastName": self.last_name,
             "email": self.email
         }
+        
+#Create new class (table) for login info
