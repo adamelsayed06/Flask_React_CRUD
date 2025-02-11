@@ -3,10 +3,10 @@ import ContactList from './ContactList'
 import './App.css'
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-
+  const [contacts, setContacts] = useState([{"firstName": "John", "lastName": "Doe", "email": "johndoe@gmail.com", id: 1}]);
+    //{} because its a JSON object
   useEffect(() => {
-    fetchContacts();
+    //fetchContacts();
   }, []); //empty array means it only runs once
 
   const fetchContacts = async () =>{ //async b/c needs to wait to grab info from backend
