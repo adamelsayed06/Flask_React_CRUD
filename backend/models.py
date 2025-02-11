@@ -10,7 +10,7 @@ class Contact(db.Model):
     last_name = db.Column(db.String(80), unique=False, nullable = False)
     email = db.Column(db.String(120), unique=True, nullable = False) #no two same emails
     
-    def to_json(self): 
+    def to_json(self): #used for api
         #self is the an instance of the contact class so we can convert to JSON for API
         return{
             "id": self.id,
